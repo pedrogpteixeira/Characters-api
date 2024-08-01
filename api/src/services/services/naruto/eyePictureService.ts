@@ -1,11 +1,11 @@
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import IEyePictureService from "../IServices/Naruto/IEyePictureService";
-import IEyePictureRepo from "../IRepos/Naruto/IEyePictureRepo";
-import {Result} from "../../core/logic/Result";
-import {EyePicture} from "../../domain/naruto/eyePicture";
-import IEyePictureDTO from "../../dto/naruto/IEyePictureDTO";
-import {EyePictureMap} from "../../mappers/naruto/EyePictureMap";
+import config from "../../../../config";
+import IEyePictureService from "../../IServices/Naruto/IEyePictureService";
+import IEyePictureRepo from "../../IRepos/Naruto/IEyePictureRepo";
+import {Result} from "../../../core/logic/Result";
+import {EyePicture} from "../../../domain/naruto/eyePicture";
+import IEyePictureDTO from "../../../dto/naruto/IEyePictureDTO";
+import {EyePictureMap} from "../../../mappers/naruto/EyePictureMap";
 
 @Service()
 export default class EyePictureService implements IEyePictureService {

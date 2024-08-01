@@ -1,11 +1,11 @@
 import {Request, Response, NextFunction} from "express";
-import INarutoService from "../../services/IServices/Naruto/INarutoService";
+import INarutoService from "../../../services/IServices/Naruto/INarutoService";
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import IEyePictureController from "../IControllers/Naruto/IEyePictureController";
-import IEyePictureService from "../../services/IServices/Naruto/IEyePictureService";
-import IEyePictureDTO from "../../dto/naruto/IEyePictureDTO";
-import {EyePicture} from "../../domain/naruto/eyePicture";
+import config from "../../../../config";
+import IEyePictureController from "../../IControllers/Naruto/IEyePictureController";
+import IEyePictureService from "../../../services/IServices/Naruto/IEyePictureService";
+import IEyePictureDTO from "../../../dto/naruto/IEyePictureDTO";
+import {EyePicture} from "../../../domain/naruto/eyePicture";
 
 @Service()
 export default class EyePictureController implements IEyePictureController {

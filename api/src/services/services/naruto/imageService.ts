@@ -1,11 +1,11 @@
 import {Inject, Service} from "typedi";
-import IImageService from "../IServices/Naruto/IImageService";
-import config from "../../../config";
-import IImageRepo from "../IRepos/Naruto/IImageRepo";
-import {Result} from "../../core/logic/Result";
-import {Image} from "../../domain/naruto/image";
-import IImageDTO from "../../dto/naruto/IImageDTO";
-import {ImageMap} from "../../mappers/naruto/ImageMap";
+import IImageService from "../../IServices/Naruto/IImageService";
+import config from "../../../../config";
+import IImageRepo from "../../IRepos/Naruto/IImageRepo";
+import {Result} from "../../../core/logic/Result";
+import {Image} from "../../../domain/naruto/image";
+import IImageDTO from "../../../dto/naruto/IImageDTO";
+import {ImageMap} from "../../../mappers/naruto/ImageMap";
 
 @Service()
 export default class ImageService implements IImageService {

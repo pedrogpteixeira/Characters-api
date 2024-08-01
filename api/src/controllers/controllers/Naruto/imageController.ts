@@ -1,11 +1,11 @@
 import {Request, Response, NextFunction} from "express";
-import INarutoService from "../../services/IServices/Naruto/INarutoService";
+import INarutoService from "../../../services/IServices/Naruto/INarutoService";
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import IImageService from "../../services/IServices/Naruto/IImageService";
-import IImageDTO from "../../dto/naruto/IImageDTO";
-import {Image} from "../../domain/naruto/image";
-import IImageController from "../IControllers/Naruto/IImageController";
+import config from "../../../../config";
+import IImageService from "../../../services/IServices/Naruto/IImageService";
+import IImageDTO from "../../../dto/naruto/IImageDTO";
+import {Image} from "../../../domain/naruto/image";
+import IImageController from "../../IControllers/Naruto/IImageController";
 
 @Service()
 export default class ImageController implements IImageController {

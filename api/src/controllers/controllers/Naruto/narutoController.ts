@@ -1,11 +1,11 @@
 import {Request, Response, NextFunction} from "express";
-import INarutoController from "../IControllers/Naruto/INarutoController";
-import INarutoService from "../../services/IServices/Naruto/INarutoService";
+import INarutoController from "../../IControllers/Naruto/INarutoController";
+import INarutoService from "../../../services/IServices/Naruto/INarutoService";
 import {Inject, Service} from "typedi";
-import config from "../../../config";
+import config from "../../../../config";
 import {ParamsDictionary} from "express-serve-static-core";
 import {ParsedQs} from "qs";
-import INarutoDTO from "../../dto/naruto/INarutoDTO";
+import INarutoDTO from "../../../dto/naruto/INarutoDTO";
 
 @Service()
 export default class NarutoController implements INarutoController {

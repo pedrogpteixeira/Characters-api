@@ -1,11 +1,11 @@
-import config from "../../../config";
+import config from "../../../../config";
 import {Inject, Service} from "typedi";
-import INarutoRepo from "../IRepos/Naruto/INarutoRepo";
-import INarutoService from "../IServices/Naruto/INarutoService";
-import {Result} from "../../core/logic/Result";
-import INarutoDTO from "../../dto/naruto/INarutoDTO";
-import {Naruto} from "../../domain/naruto/naruto";
-import {NarutoMap} from "../../mappers/naruto/NarutoMap";
+import INarutoRepo from "../../IRepos/Naruto/INarutoRepo";
+import INarutoService from "../../IServices/Naruto/INarutoService";
+import {Result} from "../../../core/logic/Result";
+import INarutoDTO from "../../../dto/naruto/INarutoDTO";
+import {Naruto} from "../../../domain/naruto/naruto";
+import {NarutoMap} from "../../../mappers/naruto/NarutoMap";
 
 @Service()
 export default class NarutoService implements INarutoService {

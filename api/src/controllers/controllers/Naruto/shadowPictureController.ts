@@ -1,11 +1,11 @@
 import {Request, Response, NextFunction} from "express";
-import INarutoService from "../../services/IServices/Naruto/INarutoService";
+import INarutoService from "../../../services/IServices/Naruto/INarutoService";
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import IShadowPictureController from "../IControllers/Naruto/IShadowPictureController";
-import IShadowPictureService from "../../services/IServices/Naruto/IShadowPictureService";
-import IShadowPictureDTO from "../../dto/naruto/IShadowPictureDTO";
-import {ShadowPicture} from "../../domain/naruto/shadowPicture";
+import config from "../../../../config";
+import IShadowPictureController from "../../IControllers/Naruto/IShadowPictureController";
+import IShadowPictureService from "../../../services/IServices/Naruto/IShadowPictureService";
+import IShadowPictureDTO from "../../../dto/naruto/IShadowPictureDTO";
+import {ShadowPicture} from "../../../domain/naruto/shadowPicture";
 
 @Service()
 export default class ShadowPictureController implements IShadowPictureController {

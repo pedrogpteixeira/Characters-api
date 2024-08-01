@@ -1,11 +1,11 @@
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import {Result} from "../../core/logic/Result";
-import IJutsuService from "../IServices/Naruto/IJutsuService";
-import {Jutsu} from "../../domain/naruto/jutsu";
-import IJutsuDTO from "../../dto/naruto/IJutsuDTO";
-import IJutsuRepo from "../IRepos/Naruto/IJutsuRepo";
-import {JutsuMap} from "../../mappers/naruto/JutsuMap";
+import config from "../../../../config";
+import {Result} from "../../../core/logic/Result";
+import IJutsuService from "../../IServices/Naruto/IJutsuService";
+import {Jutsu} from "../../../domain/naruto/jutsu";
+import IJutsuDTO from "../../../dto/naruto/IJutsuDTO";
+import IJutsuRepo from "../../IRepos/Naruto/IJutsuRepo";
+import {JutsuMap} from "../../../mappers/naruto/JutsuMap";
 
 @Service()
 export default class JutsuService implements IJutsuService {

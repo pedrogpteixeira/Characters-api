@@ -39,6 +39,16 @@ export default async ({expressApp}) => {
         schema: '../persistence/schemas/naruto/quoteSchema',
     }
 
+    const continentSchema = {
+        name: 'continentSchema',
+        schema: '../persistence/schemas/world/continentSchema',
+    }
+
+    const countrySchema = {
+        name: 'countrySchema',
+        schema: '../persistence/schemas/world/countrySchema',
+    }
+
     const narutoController = {
         name: config.controllers.naruto.naruto.name,
         path: config.controllers.naruto.naruto.path
@@ -67,6 +77,16 @@ export default async ({expressApp}) => {
     const quoteController = {
         name: config.controllers.naruto.quote.name,
         path: config.controllers.naruto.quote.path
+    }
+
+    const continentController = {
+        name: config.controllers.world.continent.name,
+        path: config.controllers.world.continent.path
+    }
+
+    const countryController = {
+        name: config.controllers.world.country.name,
+        path: config.controllers.world.country.path
     }
 
     const narutoRepo = {
@@ -99,6 +119,16 @@ export default async ({expressApp}) => {
         path: config.repos.naruto.quote.path
     }
 
+    const continentRepo = {
+        name: config.repos.world.continent.name,
+        path: config.repos.world.continent.path
+    }
+
+    const countryRepo = {
+        name: config.repos.world.country.name,
+        path: config.repos.world.country.path
+    }
+
     const narutoService = {
         name: config.services.naruto.naruto.name,
         path: config.services.naruto.naruto.path
@@ -129,6 +159,16 @@ export default async ({expressApp}) => {
         path: config.services.naruto.quote.path
     }
 
+    const continentService = {
+        name: config.services.world.continent.name,
+        path: config.services.world.continent.path
+    }
+
+    const countryService = {
+        name: config.services.world.country.name,
+        path: config.services.world.country.path
+    }
+
     await dependencyInjectorLoader({
         mongoConnection,
         schemas: [
@@ -137,7 +177,9 @@ export default async ({expressApp}) => {
             shadowPictureSchema,
             jutsuSchema,
             eyePictureSchema,
-            quoteSchema
+            quoteSchema,
+            continentSchema,
+            countrySchema
         ],
         controllers: [
             narutoController,
@@ -145,7 +187,9 @@ export default async ({expressApp}) => {
             shadowPictureController,
             jutsuController,
             eyePictureController,
-            quoteController
+            quoteController,
+            continentController,
+            countryController
         ],
         repos: [
             narutoRepo,
@@ -153,7 +197,9 @@ export default async ({expressApp}) => {
             shadowPictureRepo,
             jutsuRepo,
             eyePictureRepo,
-            quoteRepo
+            quoteRepo,
+            continentRepo,
+            countryRepo
         ],
         services: [
             narutoService,
@@ -161,7 +207,9 @@ export default async ({expressApp}) => {
             shadowPictureService,
             jutsuService,
             eyePictureService,
-            quoteService
+            quoteService,
+            continentService,
+            countryService
         ]
     });
     Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');

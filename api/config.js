@@ -43,34 +43,45 @@ export default {
      */
     prefix: {
         naruto: '/naruto',
+        world: '/world'
     },
 
     controllers: {
         naruto: {
             naruto: {
                 name: "NarutoController",
-                path: "../controllers/Naruto/narutoController"
+                path: "../controllers/controllers/Naruto/narutoController"
             },
             image: {
                 name: "ImageController",
-                path: "../controllers/Naruto/imageController"
+                path: "../controllers/controllers/Naruto/imageController"
             },
             shadowPicture: {
                 name: "ShadowPictureController",
-                path: "../controllers/Naruto/shadowPictureController"
+                path: "../controllers/controllers/Naruto/shadowPictureController"
             },
             jutsu: {
                 name: "JutsuController",
-                path: "../controllers/Naruto/jutsuController"
+                path: "../controllers/controllers/Naruto/jutsuController"
             },
             eyePicture: {
                 name: "EyePictureController",
-                path: "../controllers/Naruto/eyePictureController"
+                path: "../controllers/controllers/Naruto/eyePictureController"
             },
             quote: {
                 name: "QuoteController",
-                path: "../controllers/Naruto/quoteController"
+                path: "../controllers/controllers/Naruto/quoteController"
             }
+        },
+        world: {
+            continent: {
+                name: "ContinentController",
+                path: "../controllers/controllers/World/continentController"
+            },
+            country: {
+                name: "CountryController",
+                path: "../controllers/controllers/World/countryController"
+            },
         }
     },
 
@@ -100,6 +111,16 @@ export default {
                 name: "QuoteRepo",
                 path: "../repos/naruto/quoteRepo"
             }
+        },
+        world: {
+            continent: {
+                name: "ContinentRepo",
+                path: "../repos/world/continentRepo"
+            },
+            country: {
+                name: "CountryRepo",
+                path: "../repos/world/countryRepo"
+            }
         }
     },
 
@@ -107,27 +128,37 @@ export default {
         naruto: {
             naruto: {
                 name: "NarutoService",
-                path: "../services/naruto/narutoService"
+                path: "../services/services/naruto/narutoService"
             },
             image: {
                 name: "ImageService",
-                path: "../services/naruto/imageService"
+                path: "../services/services/naruto/imageService"
             },
             shadowPicture: {
                 name: "ShadowPictureService",
-                path: "../services/naruto/shadowPictureService"
+                path: "../services/services/naruto/shadowPictureService"
             },
             jutsu: {
                 name: "JutsuService",
-                path: "../services/naruto/jutsuService"
+                path: "../services/services/naruto/jutsuService"
             },
             eyePicture: {
                 name: "EyePictureService",
-                path: "../services/naruto/eyePictureService"
+                path: "../services/services/naruto/eyePictureService"
             },
             quote: {
                 name: "QuoteService",
-                path: "../services/naruto/quoteService"
+                path: "../services/services/naruto/quoteService"
+            }
+        },
+        world: {
+            continent: {
+                name: "ContinentService",
+                path: "../services/services/world/continentService"
+            },
+            country: {
+                name: "CountryService",
+                path: "../services/services/world/countryService"
             }
         }
     }

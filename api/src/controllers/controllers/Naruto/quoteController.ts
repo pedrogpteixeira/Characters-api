@@ -1,10 +1,10 @@
 import {Request, Response, NextFunction} from "express";
-import INarutoService from "../../services/IServices/Naruto/INarutoService";
+import INarutoService from "../../../services/IServices/Naruto/INarutoService";
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import IQuoteController from "../IControllers/Naruto/IQuoteController";
-import IQuoteService from "../../services/IServices/Naruto/IQuoteService";
-import IQuoteDTO from "../../dto/naruto/IQuoteDTO";
+import config from "../../../../config";
+import IQuoteController from "../../IControllers/Naruto/IQuoteController";
+import IQuoteService from "../../../services/IServices/Naruto/IQuoteService";
+import IQuoteDTO from "../../../dto/naruto/IQuoteDTO";
 
 @Service()
 export default class QuoteController implements IQuoteController {

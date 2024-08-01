@@ -1,11 +1,11 @@
 import {Request, Response, NextFunction} from "express";
-import INarutoService from "../../services/IServices/Naruto/INarutoService";
+import INarutoService from "../../../services/IServices/Naruto/INarutoService";
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import IJutsuController from "../IControllers/Naruto/IJutsuController";
-import IJutsuService from "../../services/IServices/Naruto/IJutsuService";
-import {Jutsu} from "../../domain/naruto/jutsu";
-import IJutsuDTO from "../../dto/naruto/IJutsuDTO";
+import config from "../../../../config";
+import IJutsuController from "../../IControllers/Naruto/IJutsuController";
+import IJutsuService from "../../../services/IServices/Naruto/IJutsuService";
+import {Jutsu} from "../../../domain/naruto/jutsu";
+import IJutsuDTO from "../../../dto/naruto/IJutsuDTO";
 
 @Service()
 export default class JutsuController implements IJutsuController {

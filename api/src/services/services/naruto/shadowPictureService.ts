@@ -1,12 +1,12 @@
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import {Result} from "../../core/logic/Result";
-import IImageDTO from "../../dto/naruto/IImageDTO";
-import IShadowPictureService from "../IServices/Naruto/IShadowPictureService";
-import {ShadowPicture} from "../../domain/naruto/shadowPicture";
-import IShadowPictureDTO from "../../dto/naruto/IShadowPictureDTO";
-import IShadowPictureRepo from "../IRepos/Naruto/IShadowPictureRepo";
-import {ShadowPictureMap} from "../../mappers/naruto/ShadowPictureMap";
+import config from "../../../../config";
+import {Result} from "../../../core/logic/Result";
+import IImageDTO from "../../../dto/naruto/IImageDTO";
+import IShadowPictureService from "../../IServices/Naruto/IShadowPictureService";
+import {ShadowPicture} from "../../../domain/naruto/shadowPicture";
+import IShadowPictureDTO from "../../../dto/naruto/IShadowPictureDTO";
+import IShadowPictureRepo from "../../IRepos/Naruto/IShadowPictureRepo";
+import {ShadowPictureMap} from "../../../mappers/naruto/ShadowPictureMap";
 
 @Service()
 export default class ShadowPictureService implements IShadowPictureService {

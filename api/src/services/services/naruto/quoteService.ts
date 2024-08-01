@@ -1,11 +1,11 @@
 import {Inject, Service} from "typedi";
-import config from "../../../config";
-import {Result} from "../../core/logic/Result";
-import {Quote} from "../../domain/naruto/quote";
-import IQuoteDTO from "../../dto/naruto/IQuoteDTO";
-import IQuoteRepo from "../IRepos/Naruto/IQuoteRepo";
-import IQuoteService from "../IServices/Naruto/IQuoteService";
-import {QuoteMap} from "../../mappers/naruto/QuoteMap";
+import config from "../../../../config";
+import {Result} from "../../../core/logic/Result";
+import {Quote} from "../../../domain/naruto/quote";
+import IQuoteDTO from "../../../dto/naruto/IQuoteDTO";
+import IQuoteRepo from "../../IRepos/Naruto/IQuoteRepo";
+import IQuoteService from "../../IServices/Naruto/IQuoteService";
+import {QuoteMap} from "../../../mappers/naruto/QuoteMap";
 
 @Service()
 export default class QuoteService implements IQuoteService {
