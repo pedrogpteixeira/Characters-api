@@ -1,22 +1,22 @@
 import {Inject, Service} from "typedi";
 import {Document, Model} from "mongoose";
-import IImageRepo from "../../services/IRepos/Naruto/IImageRepo";
-import {Image} from "../../domain/naruto/image";
-import {IImagePersistence} from "../../dataschema/Naruto/IImagePersistence";
-import {ImageMap} from "../../mappers/naruto/ImageMap";
+import IImageRepo from "../../services/IRepos/World/IImageRepo";
+import {IImagePersistence} from "../../dataschema/World/IImagePersistence";
+import {Image} from "../../domain/world/image";
+import {ImageMap} from "../../mappers/world/ImageMap";
 
 @Service()
 export default class ImageRepo implements IImageRepo {
     private image: any;
 
     constructor(
-        @Inject('imageSchema') private imageSchema: Model<IImagePersistence & Document>,
+        @Inject('countryImageSchema') private countryImageSchema: Model<IImagePersistence & Document>,
     ) {
     }
 
     public async findByName(name: string): Promise<Image> {
         try {
-            const result = await this.imageSchema.findOne({name: name});
+            const result = await this.countryImageSchema.findOne({name: {$regex: new RegExp(`^${name}$`, 'i')}});
             if (result == null) {
                 return null;
             }
@@ -32,7 +32,7 @@ export default class ImageRepo implements IImageRepo {
                 return null;
             }
             const persistence = ImageMap.toPersistence(image);
-            const document = await this.imageSchema.create(persistence);
+            const document = await this.countryImageSchema.create(persistence);
             return ImageMap.toDomain(document);
         } catch (error) {
             throw error;
@@ -42,7 +42,7 @@ export default class ImageRepo implements IImageRepo {
     public async findById(id: string): Promise<Image> {
         try {
             const query = {domainId: id};
-            const imageDocument = await this.imageSchema.findOne(query);
+            const imageDocument = await this.countryImageSchema.findOne(query);
             if (imageDocument == null) {
                 return null;
             }
@@ -52,10 +52,10 @@ export default class ImageRepo implements IImageRepo {
         }
     }
 
-    public async findByCharacterId(characterId: string): Promise<Image> {
+    public async findByCountryId(countryId: string): Promise<Image> {
         try {
-            const query = {characterId: characterId};
-            const imageDocument = await this.imageSchema.findOne(query);
+            const query = {countryId: countryId};
+            const imageDocument = await this.countryImageSchema.findOne(query);
             if (imageDocument == null) {
                 return null;
             }
@@ -68,7 +68,7 @@ export default class ImageRepo implements IImageRepo {
     public async delete(id: string): Promise<Image> {
         try {
             const query = {domainId: id};
-            const imageDocument = await this.imageSchema.findOneAndDelete(query);
+            const imageDocument = await this.countryImageSchema.findOneAndDelete(query);
             if (imageDocument == null) {
                 return null;
             }
@@ -80,8 +80,8 @@ export default class ImageRepo implements IImageRepo {
 
     public async exists(image: Image): Promise<boolean> {
         try {
-            const query = {characterId: image.characterId};
-            const imageDocument = await this.imageSchema.findOne(query);
+            const query = {countryId: image.countryId};
+            const imageDocument = await this.countryImageSchema.findOne(query);
             return imageDocument != null;
         } catch (error) {
             throw error;

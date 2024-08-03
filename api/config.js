@@ -80,7 +80,11 @@ export default {
             },
             country: {
                 name: "CountryController",
-                path: "../controllers/controllers/World/countryController"
+                path: "../controllers/controllers/World/countryController",
+                image: {
+                    name: "CountryImageController",
+                    path: "../controllers/controllers/World/imageController"
+                }
             },
         }
     },
@@ -119,7 +123,11 @@ export default {
             },
             country: {
                 name: "CountryRepo",
-                path: "../repos/world/countryRepo"
+                path: "../repos/world/countryRepo",
+                image: {
+                    name: "CountryImageRepo",
+                    path: "../repos/world/imageRepo"
+                }
             }
         }
     },
@@ -158,7 +166,11 @@ export default {
             },
             country: {
                 name: "CountryService",
-                path: "../services/services/world/countryService"
+                path: "../services/services/world/countryService",
+                image: {
+                    name: "CountryImageService",
+                    path: "../services/services/world/imageService"
+                }
             }
         }
     }

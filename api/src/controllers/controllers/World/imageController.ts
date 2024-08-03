@@ -1,18 +1,18 @@
 import {Request, Response, NextFunction} from "express";
-import INarutoService from "../../../services/IServices/Naruto/INarutoService";
 import {Inject, Service} from "typedi";
 import config from "../../../../config";
-import IImageService from "../../../services/IServices/Naruto/IImageService";
-import IImageDTO from "../../../dto/naruto/IImageDTO";
-import {Image} from "../../../domain/naruto/image";
-import IImageController from "../../IControllers/Naruto/IImageController";
+import IImageController from "../../IControllers/World/IImageController";
+import ICountryService from "../../../services/IServices/World/ICountryService";
+import IImageService from "../../../services/IServices/World/IImageService";
+import IImageDTO from "../../../dto/world/IImageDTO";
+import {Image} from "../../../domain/world/image";
 
 @Service()
 export default class ImageController implements IImageController {
 
     constructor(
-        @Inject(config.services.naruto.naruto.name) private narutoServiceInstance: INarutoService,
-        @Inject(config.services.naruto.image.name) private imageServiceInstance: IImageService
+        @Inject(config.services.world.country.name) private countryServiceInstance: ICountryService,
+        @Inject(config.services.world.country.image.name) private imageServiceInstance: IImageService
     ) {
     }
 
@@ -56,10 +56,10 @@ export default class ImageController implements IImageController {
         }
     }
 
-    public async getImageByCharacterId(req: Request, res: Response, next: NextFunction) {
+    public async getImageByCountryId(req: Request, res: Response, next: NextFunction) {
         try {
-            const characterId = req.params.characterId;
-            const result = await this.imageServiceInstance.findByCharacterId(characterId);
+            const countryId = req.params.countryId;
+            const result = await this.imageServiceInstance.findByCountryId(countryId);
 
             if (result.isFailure) {
                 return res.status(404).json(result.errorValue());
@@ -102,7 +102,7 @@ export default class ImageController implements IImageController {
 
             const imageDTO = {
                 name: req.body.name,
-                characterId: req.body.characterId,
+                countryId: req.body.countryId,
                 data: imgBase64
             } as IImageDTO;
 
@@ -119,9 +119,9 @@ export default class ImageController implements IImageController {
                 return res.status(404).json("Image name already exists");
             }
 
-            const characterResult = await this.narutoServiceInstance.findById(image.characterId);
-            if (characterResult.isFailure) {
-                return res.status(404).json(characterResult.errorValue());
+            const countryResult = await this.countryServiceInstance.findById(image.countryId);
+            if (countryResult.isFailure) {
+                return res.status(404).json(countryResult.errorValue());
             }
 
             const result = await this.imageServiceInstance.saveImage(image);

@@ -49,6 +49,11 @@ export default async ({expressApp}) => {
         schema: '../persistence/schemas/world/countrySchema',
     }
 
+    const countryImageSchema = {
+        name: 'countryImageSchema',
+        schema: '../persistence/schemas/world/imageSchema',
+    }
+
     const narutoController = {
         name: config.controllers.naruto.naruto.name,
         path: config.controllers.naruto.naruto.path
@@ -87,6 +92,11 @@ export default async ({expressApp}) => {
     const countryController = {
         name: config.controllers.world.country.name,
         path: config.controllers.world.country.path
+    }
+
+    const countryImageController = {
+        name: config.controllers.world.country.image.name,
+        path: config.controllers.world.country.image.path
     }
 
     const narutoRepo = {
@@ -129,6 +139,11 @@ export default async ({expressApp}) => {
         path: config.repos.world.country.path
     }
 
+    const countryImageRepo = {
+        name: config.repos.world.country.image.name,
+        path: config.repos.world.country.image.path
+    }
+
     const narutoService = {
         name: config.services.naruto.naruto.name,
         path: config.services.naruto.naruto.path
@@ -169,6 +184,11 @@ export default async ({expressApp}) => {
         path: config.services.world.country.path
     }
 
+    const countryImageService = {
+        name: config.services.world.country.image.name,
+        path: config.services.world.country.image.path
+    }
+
     await dependencyInjectorLoader({
         mongoConnection,
         schemas: [
@@ -179,7 +199,8 @@ export default async ({expressApp}) => {
             eyePictureSchema,
             quoteSchema,
             continentSchema,
-            countrySchema
+            countrySchema,
+            countryImageSchema
         ],
         controllers: [
             narutoController,
@@ -189,7 +210,8 @@ export default async ({expressApp}) => {
             eyePictureController,
             quoteController,
             continentController,
-            countryController
+            countryController,
+            countryImageController
         ],
         repos: [
             narutoRepo,
@@ -199,7 +221,8 @@ export default async ({expressApp}) => {
             eyePictureRepo,
             quoteRepo,
             continentRepo,
-            countryRepo
+            countryRepo,
+            countryImageRepo
         ],
         services: [
             narutoService,
@@ -209,7 +232,8 @@ export default async ({expressApp}) => {
             eyePictureService,
             quoteService,
             continentService,
-            countryService
+            countryService,
+            countryImageService
         ]
     });
     Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');
