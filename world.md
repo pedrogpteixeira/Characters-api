@@ -1,40 +1,29 @@
-## Naruto
+## World
 
 ### Endpoints
 
-### Character
+### Country
 
-- **GET /naruto**: Retrieve a list of all characters.
-- **POST /naruto**: Add a new character to the database.
-- **PUT /naruto/:id**: Update a character in the database.
-- **DELETE /naruto/:id**: Remove a character from the database.
+- **GET /world/country**: Retrieve a list of all countries.
+- **POST /world/country**: Add a new country to the database.
+- **GET /world/country/:id**: Retrieve a country by ID.
+- **GET /world/country/name/:name**: Retrieve a country by name.
+- **DELETE /world/country/:id**: Remove a country from the database.
+- **GET /world/country/continent/:id**: Retrieve a list of countries by continent ID.
+- **GET /world/country/continent/name/:name**: Retrieve a list of countries by continent name.
+
+### Continent
+
+- **GET /world/continent**: Retrieve a list of all continents.
+- **POST /world/continent**: Add a new continent to the database.
+- **GET /world/continent/:id**: Retrieve a continent by ID.
+- **GET /world/continent/name/:name**: Retrieve a continent by name.
+- **DELETE /world/continent/:id**: Remove a continent from the database.
 
 ### Image
 
-- **POST /image**: Upload an image for a character.
-- **GET /image/name/:name**: Retrieve an image by character name.
-- **GET /image/:id**: Retrieve an image by ID.
-- **GET /image/character/:id**: Retrieve an image by character ID.
-- **DELETE /image/:id**: Remove an image from the database.
-
-### Shadow
-
-- **POST /shadow**: Add a shadow image for a character.
-- **GET /shadow/:id**: Retrieve a shadow image by ID.
-- **GET /shadow/character/:id**: Retrieve a shadow image by character ID.
-- **DELETE /shadow/:id**: Remove a shadow image from the database.
-
-### Jutsu
-
-- **POST /jutsu**: Add a jutsu video for a character.
-- **GET /jutsu/:id**: Retrieve a jutsu video by ID.
-- **GET /jutsu/character/:id**: Retrieve a jutsu video by character ID.
-- **GET /jutsu/name/:name**: Retrieve a jutsu video by jutsu name.
-- **DELETE /jutsu/:id**: Remove a jutsu video from the database.
-
-### Quote
-
-- **POST /quote**: Add a quote for a character.
-- **GET /quote/:id**: Retrieve a quote by ID.
-- **GET /quote/character/:id**: Retrieve quotes by character ID.
-- **DELETE /quote/:id**: Remove a quote from the database.
+- **POST /world/image**: Upload an image for a character.
+- **GET /world/image/name/:name**: Retrieve an image by character name.
+- **GET /world/image/:id**: Retrieve an image by ID.
+- **GET /world/image/character/:id**: Retrieve an image by character ID.
+- **DELETE /world/image/:id**: Remove an image from the database.

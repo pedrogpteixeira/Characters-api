@@ -13,7 +13,7 @@ The **Character API** is a versatile RESTful service designed to manage and serv
 
 ### Endpoints
 
-For more detailed information about the naruto endpoints, refer to the [Naruto API Documentation](naruto.md).
+For more detailed information about the naruto endpoints, refer to the [Naruto API Documentation](naruto.md).\
 For more detailed information about the world endpoints, refer to the [World API Documentation](world.md).
 
 ### Technologies Used

@@ -19,17 +19,17 @@ export default {
     /**
      * That long string from mlab
      */
-    databaseURL: process.env.MONGODB_URI || "mongodb://vsgate-s1.dei.isep.ipp.pt:10239",
+    databaseURL: process.env.MONGODB_URI,
     /**
      * Your secret sauce
      */
-    jwtSecret: process.env.JWT_SECRET || "my sakdfho2390asjod$%jl)!sdjas0i secret",
+    jwtSecret: process.env.JWT_SECRET,
 
     /**
      * Database user and password
      */
-    dbUser: process.env.DB_USER || "mongoadmin",
-    dbPassword: process.env.DB_PASS || "8733cb24de0d761e17b6593d",
+    dbUser: process.env.DB_USER,
+    dbPassword: process.env.DB_PASS,
 
     /**
      * Used by winston logger
