@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import naruto_routes from '../api/routes/Naruto';
 import world_routes from "../api/routes/World";
+import football_routes from "../api/routes/Football";
 import config from '../../config';
 
 export default ({app}: { app: express.Application }) => {
@@ -38,6 +39,7 @@ export default ({app}: { app: express.Application }) => {
     // Load API routes
     app.use(config.prefix.naruto, naruto_routes());
     app.use(config.prefix.world, world_routes());
+    app.use(config.prefix.football, football_routes());
 
 
     app.get('/', (req, res) => {

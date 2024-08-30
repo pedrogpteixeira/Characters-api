@@ -43,7 +43,8 @@ export default {
      */
     prefix: {
         naruto: '/naruto',
-        world: '/world'
+        world: '/world',
+        football: '/football',
     },
 
     controllers: {
@@ -86,6 +87,12 @@ export default {
                     path: "../controllers/controllers/World/imageController"
                 }
             },
+        },
+        football: {
+            league: {
+                name: "LeagueController",
+                path: "../controllers/controllers/Football/leagueController"
+            }
         }
     },
 
