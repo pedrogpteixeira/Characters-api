@@ -5,42 +5,122 @@ import ILeagueController from "../../IControllers/Football/ILeagueController";
 import ILeagueService from "../../../services/IServices/Football/ILeagueService";
 import {ParamsDictionary} from "express-serve-static-core";
 import {ParsedQs} from "qs";
+import ILeagueDTO from "../../../dto/football/ILeagueDTO";
+import {League} from "../../../domain/football/league";
+import ICountryService from "../../../services/IServices/World/ICountryService";
 
 @Service()
 export default class LeagueController implements ILeagueController {
 
     constructor(
-        @Inject(config.services.football.league.name) private leagueServiceInstance: ILeagueService
+        @Inject(config.services.football.league.name) private leagueServiceInstance: ILeagueService,
+        @Inject(config.services.world.country.name) private countryServiceInstance: ICountryService
     ) {
     }
 
-    getLeagueById(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
-        throw new Error("Method not implemented.");
+    public async getLeagueById(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const result = await this.leagueServiceInstance.findById(id);
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+            return res.status(200).json(result.getValue());
+        } catch (error) {
+            next(error);
+        }
     }
 
-    getLeagueByName(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
-        throw new Error("Method not implemented.");
+    public async getLeagueByName(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const name = req.params.name;
+            const result = await this.leagueServiceInstance.findByName(name);
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+            return res.status(200).json(result.getValue());
+        } catch (error) {
+            next(error);
+        }
     }
 
-    getLeagueByCountry(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
-        throw new Error("Method not implemented.");
+    public async getLeagueByCountry(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const country = req.params.countryId;
+            const result = await this.leagueServiceInstance.findByCountryId(country);
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+            return res.status(200).json(result.getValue());
+        } catch (error) {
+            next(error);
+        }
     }
 
-    getLeagueThatHasMinusXTeams(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
-        throw new Error("Method not implemented.");
+    public async getLeagueThatHasMinusXTeams(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const teams_string = req.params.teams;
+
+            // Convert the string to a number
+            const teams = parseInt(teams_string);
+
+            if (isNaN(teams)) {
+                return res.status(400).json({error: "Invalid number"});
+            }
+
+            const result = await this.leagueServiceInstance.findThatHasMinusXTeams(teams);
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+            return res.status(200).json(result.getValue());
+        } catch (error) {
+            next(error);
+        }
     }
 
-    getLeagueThatHasMoreThanXTeams(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
-        throw new Error("Method not implemented.");
+    public async getLeagueThatHasMoreThanXTeams(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const teams_string = req.params.teams;
+
+            // Convert the string to a number
+            const teams = parseInt(teams_string);
+
+            if (isNaN(teams)) {
+                return res.status(400).json({error: "Invalid number"});
+            }
+
+            const result = await this.leagueServiceInstance.findThatHasMoreThanXTeams(teams);
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+            return res.status(200).json(result.getValue());
+        } catch (error) {
+            next(error);
+        }
     }
 
-    deleteLeague(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
-        throw new Error("Method not implemented.");
+    public async deleteLeague(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const result = await this.leagueServiceInstance.delete(id);
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+            return res.status(200).json(result.getValue());
+        } catch (error) {
+            next(error);
+        }
     }
 
     public async getAllLeagues(req: Request, res: Response, next: NextFunction) {
         try {
-            const result = await this.continentServiceInstance.getAll();
+            const result = await this.leagueServiceInstance.getAll();
             if (result.isFailure) {
                 return res.status(404).json(result.errorValue());
             }
@@ -53,12 +133,19 @@ export default class LeagueController implements ILeagueController {
 
     public async saveLeague(req: Request, res: Response, next: NextFunction) {
         try {
-            const continentDTO = req.body as IContinentDTO;
-            const continent = Continent.create(continentDTO);
-            if (continent.isFailure) {
-                return res.status(400).json(continent.errorValue());
+            const leagueDTO = req.body as ILeagueDTO;
+
+            const country = await this.countryServiceInstance.findById(leagueDTO.countryId);
+
+            if (country.isFailure) {
+                return res.status(400).json(country.errorValue());
             }
-            const result = await this.continentServiceInstance.save(continent.getValue());
+
+            const league = League.create(leagueDTO);
+            if (league.isFailure) {
+                return res.status(400).json(league.errorValue());
+            }
+            const result = await this.leagueServiceInstance.save(league.getValue());
             if (result.isFailure) {
                 return res.status(400).json(result.errorValue());
             }

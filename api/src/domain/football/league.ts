@@ -62,8 +62,6 @@ export class League extends AggregateRoot<LeagueProps> {
             return Result.fail<League>("Number of teams is required");
         } else if (!!division == false || division < 0) {
             return Result.fail<League>("Division is required");
-        } else if (!!description == false || description.length === 0) {
-            return Result.fail<League>("Description is required");
         } else {
             const league = new League({
                 name,

@@ -7,7 +7,7 @@ const envFound = dotenv.config();
 if (!envFound) {
     // This error should crash whole process
 
-    throw new Error("⚠️  Couldn't find .env file  ⚠️");
+    throw new Error("⚠️  Couldn't find ..env file  ⚠️");
 }
 
 export default {
@@ -136,6 +136,12 @@ export default {
                     path: "../repos/world/imageRepo"
                 }
             }
+        },
+        football: {
+            league: {
+                name: "LeagueRepo",
+                path: "../repos/football/leagueRepo"
+            }
         }
     },
 
@@ -178,6 +184,12 @@ export default {
                     name: "CountryImageService",
                     path: "../services/services/world/imageService"
                 }
+            }
+        },
+        football: {
+            league: {
+                name: "LeagueService",
+                path: "../services/services/football/leagueService"
             }
         }
     }

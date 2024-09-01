@@ -7,21 +7,25 @@ import ILeagueController from "../../../../controllers/IControllers/Football/ILe
 const route = Router();
 
 export default (app: Router) => {
-    app.use('/football', route);
+    app.use('/league', route);
 
     const ctrl = Container.get(config.controllers.football.league.name) as ILeagueController;
 
     route.post('/', celebrate({
         body: Joi.object({
-            name: Joi.string().required()
+            name: Joi.string().required(),
+            countryId: Joi.string().required(),
+            numberOfTeams: Joi.number().required(),
+            division: Joi.number().required(),
+            description: Joi.string()
         }),
     }), async (req, res, next) => {
-        console.log('Saving football...');
+        console.log('Saving league...');
         ctrl.saveLeague(req, res, next);
     });
 
     route.get('/:id', async (req, res, next) => {
-        console.log('Getting football by id...');
+        console.log('Getting league by id...');
         ctrl.getLeagueById(req, res, next);
     });
 
@@ -30,18 +34,18 @@ export default (app: Router) => {
         ctrl.getLeagueByName(req, res, next);
     });
 
-    route.get('/country/:country', async (req, res, next) => {
+    route.get('/country/:countryId', async (req, res, next) => {
         console.log('Getting leagues by country...');
         ctrl.getLeagueByCountry(req, res, next);
     });
 
-    route.get('/minus/:teams', async (req, res, next) => {
-        console.log('Getting leagues that have less than' + req.params.teams + ' teams...');
+    route.get('/teams/minus/:teams', async (req, res, next) => {
+        console.log('Getting leagues that have less than ' + req.params.teams + ' teams...');
         ctrl.getLeagueThatHasMinusXTeams(req, res, next);
     });
 
-    route.get('/more/:teams', async (req, res, next) => {
-        console.log('Getting leagues that have more than' + req.params.teams + ' teams...');
+    route.get('/teams/more/:teams', async (req, res, next) => {
+        console.log('Getting leagues that have more than ' + req.params.teams + ' teams...');
         ctrl.getLeagueThatHasMoreThanXTeams(req, res, next);
     });
 

@@ -17,5 +17,5 @@ export default interface ILeagueService {
 
     getAll(): Promise<Result<ILeagueDTO[]>>;
 
-    deleteContinent(leagueId: string): Promise<Result<ILeagueDTO>>;
+    delete(leagueId: string): Promise<Result<ILeagueDTO>>;
 }

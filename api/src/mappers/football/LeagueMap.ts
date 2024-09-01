@@ -3,6 +3,7 @@ import {Document, Model} from 'mongoose';
 import {UniqueEntityID} from "../../core/domain/UniqueEntityID";
 import {League} from "../../domain/football/league";
 import ILeagueDTO from "../../dto/football/ILeagueDTO";
+import {ILeaguePersistence} from "../../dataschema/Football/ILeaguePersistence";
 
 export class LeagueMap extends Mapper<League> {
     public static toDTO(league: League): ILeagueDTO {
@@ -16,20 +17,22 @@ export class LeagueMap extends Mapper<League> {
         } as ILeagueDTO;
     }
 
-    public static toDomain(country: any | Model<ILeaguePersistence & Document>): Country {
-        const imageOrError = Country.create(country, new UniqueEntityID(country.domainId));
+    public static toDomain(league: any | Model<ILeaguePersistence & Document>): League {
+        const leagueOrError = League.create(league, new UniqueEntityID(league.domainId));
 
-        imageOrError.isFailure ? console.log(imageOrError.error) : '';
+        leagueOrError.isFailure ? console.log(leagueOrError.error) : '';
 
-        return imageOrError.isSuccess ? imageOrError.getValue() : null;
+        return leagueOrError.isSuccess ? leagueOrError.getValue() : null;
     }
 
-    public static toPersistence(country: Country): any {
+    public static toPersistence(league: League): any {
         return {
-            domainId: country.id.toString(),
-            name: country.name,
-            population: country.population,
-            continentId: country.continentId
+            domainId: league.id.toString(),
+            name: league.name,
+            countryId: league.countryId,
+            numberOfTeams: league.numberOfTeams,
+            division: league.division,
+            description: league.description
         };
     }
 }

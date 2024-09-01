@@ -4,11 +4,11 @@ import {IContinentPersistence} from "../../../dataschema/World/IContinentPersist
 const LeagueSchema: Schema = new Schema(
     {
         domainId: {type: String, unique: true, required: true},
-        name: {type: String, unique: true, required: true},
+        name: {type: String, required: true},
         countryId: {type: String, required: true},
         numberOfTeams: {type: Number, required: true},
         division: {type: Number, required: true},
-        description: {type: String, required: true},
+        description: {type: String},
     },
     {
         timestamps: true,
