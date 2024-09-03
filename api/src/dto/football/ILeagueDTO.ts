@@ -4,5 +4,6 @@ export default interface ILeagueDTO {
     countryId: string;
     numberOfTeams: number;
     division: number;
+    image: string;
     description: string;
 }

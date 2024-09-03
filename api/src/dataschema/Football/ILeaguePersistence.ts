@@ -4,5 +4,6 @@ export interface ILeaguePersistence {
     countryId: string;
     numberOfTeams: number;
     division: number;
+    image: string;
     description: string;
 }

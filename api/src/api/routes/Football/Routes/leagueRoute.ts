@@ -3,15 +3,19 @@ import config from "../../../../../config";
 import {Container} from "typedi";
 import {celebrate, Joi} from "celebrate";
 import ILeagueController from "../../../../controllers/IControllers/Football/ILeagueController";
+import multer from "multer";
 
 const route = Router();
 
 export default (app: Router) => {
     app.use('/league', route);
 
+    const storage = multer.memoryStorage();
+    const upload = multer({storage: storage});
+
     const ctrl = Container.get(config.controllers.football.league.name) as ILeagueController;
 
-    route.post('/', celebrate({
+    route.post('/', upload.single('image'), celebrate({
         body: Joi.object({
             name: Joi.string().required(),
             countryId: Joi.string().required(),
@@ -27,6 +31,11 @@ export default (app: Router) => {
     route.get('/:id', async (req, res, next) => {
         console.log('Getting league by id...');
         ctrl.getLeagueById(req, res, next);
+    });
+
+    route.get('/image/:id', async (req, res, next) => {
+        console.log('Getting league by id...');
+        ctrl.getLeagueImageById(req, res, next);
     });
 
     route.get('/name/:name', async (req, res, next) => {

@@ -18,6 +18,25 @@ export default class LeagueController implements ILeagueController {
     ) {
     }
 
+    public async getLeagueImageById(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const result = await this.leagueServiceInstance.findImageById(id);
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+            const imgBuffer = Buffer.from(result.getValue().image.toString(), 'base64');
+
+            res.writeHead(200, {
+                'Content-Length': imgBuffer.length
+            });
+            return res.end(imgBuffer);
+        } catch (error) {
+            next(error);
+        }
+    }
+
     public async getLeagueById(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
         try {
             const id = req.params.id;
@@ -139,6 +158,15 @@ export default class LeagueController implements ILeagueController {
 
             if (country.isFailure) {
                 return res.status(400).json(country.errorValue());
+            }
+
+            let imgBuffer: Buffer;
+            let imgBase64: string;
+
+            if (req.file) {
+                imgBuffer = req.file.buffer;
+                imgBase64 = imgBuffer.toString('base64');
+                leagueDTO.image = imgBase64;
             }
 
             const league = League.create(leagueDTO);

@@ -7,6 +7,8 @@ export default interface ILeagueService {
 
     findById(leagueId: string): Promise<Result<ILeagueDTO>>;
 
+    findImageById(leagueId: string): Promise<Result<ILeagueDTO>>;
+
     findByName(name: string): Promise<Result<ILeagueDTO>>;
 
     findByCountryId(countryId: string): Promise<Result<ILeagueDTO[]>>;

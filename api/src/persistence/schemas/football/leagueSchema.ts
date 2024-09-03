@@ -8,6 +8,7 @@ const LeagueSchema: Schema = new Schema(
         countryId: {type: String, required: true},
         numberOfTeams: {type: Number, required: true},
         division: {type: Number, required: true},
+        image: {type: String},
         description: {type: String},
     },
     {

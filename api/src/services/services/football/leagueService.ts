@@ -1,11 +1,6 @@
 import {Inject, Service} from "typedi";
 import config from "../../../../config";
 import {Result} from "../../../core/logic/Result";
-import IContinentService from "../../IServices/World/IContinentService";
-import IContinentRepo from "../../IRepos/World/IContinentRepo";
-import {Continent} from "../../../domain/world/continent";
-import IContinentDTO from "../../../dto/world/IContinentDTO";
-import {ContinentMap} from "../../../mappers/world/ContinentMap";
 import ILeagueService from "../../IServices/Football/ILeagueService";
 import ILeagueRepo from "../../IRepos/Football/ILeagueRepo";
 import {League} from "../../../domain/football/league";
@@ -17,6 +12,19 @@ export default class LeagueService implements ILeagueService {
     constructor(
         @Inject(config.repos.football.league.name) private leagueRepo: ILeagueRepo,
     ) {
+    }
+
+    public async findImageById(leagueId: string): Promise<Result<ILeagueDTO>> {
+        try {
+            const league = await this.leagueRepo.findById(leagueId);
+            if (league == null) {
+                return Result.fail<ILeagueDTO>("League not found");
+            }
+
+            return Result.ok<ILeagueDTO>(LeagueMap.toDTOWithImage(league));
+        } catch (error) {
+            throw error;
+        }
     }
 
     public async save(league: League): Promise<Result<ILeagueDTO>> {

@@ -10,6 +10,7 @@ interface LeagueProps {
     countryId: string;
     numberOfTeams: number;
     division: number;
+    image: string;
     description: string;
 }
 
@@ -35,6 +36,10 @@ export class League extends AggregateRoot<LeagueProps> {
         return this.props.division;
     }
 
+    get image(): string {
+        return this.props.image;
+    }
+
     get description(): string {
         return this.props.description;
     }
@@ -52,6 +57,7 @@ export class League extends AggregateRoot<LeagueProps> {
         const countryId = leagueDTO.countryId;
         const numberOfTeams = leagueDTO.numberOfTeams;
         const division = leagueDTO.division;
+        const image = leagueDTO.image;
         const description = leagueDTO.description;
 
         if (!!name == false || name.length === 0) {
@@ -68,6 +74,7 @@ export class League extends AggregateRoot<LeagueProps> {
                 countryId,
                 numberOfTeams,
                 division,
+                image,
                 description
             }, id);
             return Result.ok<League>(league)

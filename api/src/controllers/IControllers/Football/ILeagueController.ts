@@ -5,6 +5,8 @@ export default interface ILeagueController {
 
     getLeagueById(req: Request, res: Response, next: NextFunction);
 
+    getLeagueImageById(req: Request, res: Response, next: NextFunction);
+
     getLeagueByName(req: Request, res: Response, next: NextFunction);
 
     getLeagueByCountry(req: Request, res: Response, next: NextFunction);

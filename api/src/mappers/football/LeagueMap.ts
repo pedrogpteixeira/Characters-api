@@ -13,6 +13,19 @@ export class LeagueMap extends Mapper<League> {
             countryId: league.countryId,
             numberOfTeams: league.numberOfTeams,
             division: league.division,
+            image: "",
+            description: league.description
+        } as ILeagueDTO;
+    }
+
+    public static toDTOWithImage(league: League): ILeagueDTO {
+        return {
+            id: league.id.toString(),
+            name: league.name,
+            countryId: league.countryId,
+            numberOfTeams: league.numberOfTeams,
+            division: league.division,
+            image: league.image,
             description: league.description
         } as ILeagueDTO;
     }
@@ -32,6 +45,7 @@ export class LeagueMap extends Mapper<League> {
             countryId: league.countryId,
             numberOfTeams: league.numberOfTeams,
             division: league.division,
+            image: league.image,
             description: league.description
         };
     }
