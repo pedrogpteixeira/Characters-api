@@ -59,6 +59,11 @@ export default async ({expressApp}) => {
         schema: '../persistence/schemas/football/leagueSchema',
     }
 
+    const clubSchema = {
+        name: 'clubSchema',
+        schema: '../persistence/schemas/football/clubSchema',
+    }
+
     const narutoController = {
         name: config.controllers.naruto.naruto.name,
         path: config.controllers.naruto.naruto.path
@@ -107,6 +112,11 @@ export default async ({expressApp}) => {
     const leagueController = {
         name: config.controllers.football.league.name,
         path: config.controllers.football.league.path
+    }
+
+    const clubController = {
+        name: config.controllers.football.club.name,
+        path: config.controllers.football.club.path
     }
 
     const narutoRepo = {
@@ -159,6 +169,11 @@ export default async ({expressApp}) => {
         path: config.repos.football.league.path
     }
 
+    const clubRepo = {
+        name: config.repos.football.club.name,
+        path: config.repos.football.club.path
+    }
+
     const narutoService = {
         name: config.services.naruto.naruto.name,
         path: config.services.naruto.naruto.path
@@ -209,6 +224,11 @@ export default async ({expressApp}) => {
         path: config.services.football.league.path
     }
 
+    const clubService = {
+        name: config.services.football.club.name,
+        path: config.services.football.club.path
+    }
+
     await dependencyInjectorLoader({
         mongoConnection,
         schemas: [
@@ -221,7 +241,8 @@ export default async ({expressApp}) => {
             continentSchema,
             countrySchema,
             countryImageSchema,
-            leagueSchema
+            leagueSchema,
+            clubSchema
         ],
         controllers: [
             narutoController,
@@ -233,7 +254,8 @@ export default async ({expressApp}) => {
             continentController,
             countryController,
             countryImageController,
-            leagueController
+            leagueController,
+            clubController
         ],
         repos: [
             narutoRepo,
@@ -245,7 +267,8 @@ export default async ({expressApp}) => {
             continentRepo,
             countryRepo,
             countryImageRepo,
-            leagueRepo
+            leagueRepo,
+            clubRepo
         ],
         services: [
             narutoService,
@@ -257,7 +280,8 @@ export default async ({expressApp}) => {
             continentService,
             countryService,
             countryImageService,
-            leagueService
+            leagueService,
+            clubService
         ]
     });
     Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');

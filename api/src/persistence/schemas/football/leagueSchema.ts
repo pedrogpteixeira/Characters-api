@@ -1,5 +1,5 @@
 import mongoose, {Document, Schema} from 'mongoose';
-import {IContinentPersistence} from "../../../dataschema/World/IContinentPersistence";
+import {ILeaguePersistence} from "../../../dataschema/Football/ILeaguePersistence";
 
 const LeagueSchema: Schema = new Schema(
     {
@@ -16,4 +16,4 @@ const LeagueSchema: Schema = new Schema(
     }
 );
 
-export default mongoose.model<IContinentPersistence & Document>('Football-League', LeagueSchema);
+export default mongoose.model<ILeaguePersistence & Document>('Football-League', LeagueSchema);

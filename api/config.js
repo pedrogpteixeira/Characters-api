@@ -92,6 +92,10 @@ export default {
             league: {
                 name: "LeagueController",
                 path: "../controllers/controllers/Football/leagueController"
+            },
+            club: {
+                name: "ClubController",
+                path: "../controllers/controllers/Football/clubController"
             }
         }
     },
@@ -141,6 +145,10 @@ export default {
             league: {
                 name: "LeagueRepo",
                 path: "../repos/football/leagueRepo"
+            },
+            club: {
+                name: "ClubRepo",
+                path: "../repos/football/clubRepo"
             }
         }
     },
@@ -190,6 +198,10 @@ export default {
             league: {
                 name: "LeagueService",
                 path: "../services/services/football/leagueService"
+            },
+            club: {
+                name: "ClubService",
+                path: "../services/services/football/clubService"
             }
         }
     }

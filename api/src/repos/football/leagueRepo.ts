@@ -14,12 +14,12 @@ export default class LeagueRepo implements ILeagueRepo {
     ) {
     }
 
-    public async save(continent: League): Promise<League> {
+    public async save(league: League): Promise<League> {
         try {
-            if (await this.exists(continent)) {
+            if (await this.exists(league)) {
                 return null;
             }
-            const persistence = LeagueMap.toPersistence(continent);
+            const persistence = LeagueMap.toPersistence(league);
             const document = await this.leagueSchema.create(persistence);
             return LeagueMap.toDomain(document);
         } catch (error) {

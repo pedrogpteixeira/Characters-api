@@ -1,7 +1,7 @@
 import {League} from "../../../domain/football/league";
 
 export default interface ILeagueRepo {
-    save(continent: League): Promise<League>;
+    save(league: League): Promise<League>;
 
     findById(id: string): Promise<League>;
 
