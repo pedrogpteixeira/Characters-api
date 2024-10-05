@@ -28,6 +28,24 @@ export default (app: Router) => {
         ctrl.saveLeague(req, res, next);
     });
 
+    route.put('/:id', upload.single('image'), celebrate({
+        body: Joi.object({
+            name: Joi.string().required(),
+            countryId: Joi.string().required(),
+            numberOfTeams: Joi.number().required(),
+            division: Joi.number().required(),
+            description: Joi.string()
+        }),
+    }), async (req, res, next) => {
+        console.log('Updating league...');
+        ctrl.updateLeague(req, res, next);
+    });
+
+    route.patch('/:id', upload.single('image'), async (req, res, next) => {
+        console.log('Updating league...');
+        ctrl.patchLeague(req, res, next);
+    });
+
     route.get('/:id', async (req, res, next) => {
         console.log('Getting league by id...');
         ctrl.getLeagueById(req, res, next);

@@ -18,6 +18,106 @@ export default class LeagueController implements ILeagueController {
     ) {
     }
 
+    public async patchLeague(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const id = req.params.id;
+
+            const leagueInstance = await this.leagueServiceInstance.findById(id);
+            if (leagueInstance.isFailure) {
+                return res.status(404).json(leagueInstance.errorValue());
+            }
+
+            const leagueDTO = leagueInstance.getValue();
+
+            if (req.body.name) {
+                leagueDTO.name = req.body.name;
+            }
+
+            if (req.body.countryId) {
+                const country = await this.countryServiceInstance.findById(req.body.countryId);
+                if (country.isFailure) {
+                    return res.status(400).json(country.errorValue());
+                }
+                leagueDTO.countryId = req.body.countryId;
+            }
+
+            if (req.body.numberOfTeams) {
+                leagueDTO.numberOfTeams = req.body.numberOfTeams;
+            }
+
+            if (req.body.division) {
+                leagueDTO.division = req.body.division;
+            }
+
+            if (req.body.description) {
+                leagueDTO.description = req.body.description;
+            }
+
+            let imgBuffer: Buffer;
+            let imgBase64: string;
+
+            if (req.file) {
+                imgBuffer = req.file.buffer;
+                imgBase64 = imgBuffer.toString('base64');
+                leagueDTO.image = imgBase64;
+            }
+
+            console.log(leagueDTO)
+
+            const league = League.create(leagueDTO);
+            if (league.isFailure) {
+                return res.status(400).json(league.errorValue());
+            }
+
+            /*const result = await this.leagueServiceInstance.update(id, league.getValue());
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+             */
+
+            return res.status(200).json("Not implemented");
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    public async updateLeague(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const leagueDTO = req.body as ILeagueDTO;
+
+            const country = await this.countryServiceInstance.findById(leagueDTO.countryId);
+
+            if (country.isFailure) {
+                return res.status(400).json(country.errorValue());
+            }
+
+            let imgBuffer: Buffer;
+            let imgBase64: string;
+
+            if (req.file) {
+                imgBuffer = req.file.buffer;
+                imgBase64 = imgBuffer.toString('base64');
+                leagueDTO.image = imgBase64;
+            }
+
+            const league = League.create(leagueDTO);
+            if (league.isFailure) {
+                return res.status(400).json(league.errorValue());
+            }
+
+            const result = await this.leagueServiceInstance.update(id, league.getValue());
+            if (result.isFailure) {
+                return res.status(404).json(result.errorValue());
+            }
+
+            return res.status(200).json(result.getValue());
+        } catch (error) {
+            next(error);
+        }
+    }
+
     public async getLeagueImageById(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
         try {
             const id = req.params.id;

@@ -3,6 +3,10 @@ import {NextFunction, Request, Response} from "express";
 export default interface ILeagueController {
     saveLeague(req: Request, res: Response, next: NextFunction);
 
+    updateLeague(req: Request, res: Response, next: NextFunction);
+
+    patchLeague(req: Request, res: Response, next: NextFunction);
+
     getLeagueById(req: Request, res: Response, next: NextFunction);
 
     getLeagueImageById(req: Request, res: Response, next: NextFunction);

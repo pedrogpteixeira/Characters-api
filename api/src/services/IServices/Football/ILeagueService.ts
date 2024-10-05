@@ -5,6 +5,8 @@ import ILeagueDTO from "../../../dto/football/ILeagueDTO";
 export default interface ILeagueService {
     save(league: League): Promise<Result<ILeagueDTO>>;
 
+    update(leagueId: string, league: League): Promise<Result<ILeagueDTO>>;
+
     findById(leagueId: string): Promise<Result<ILeagueDTO>>;
 
     findImageById(leagueId: string): Promise<Result<ILeagueDTO>>;

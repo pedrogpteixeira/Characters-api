@@ -8,6 +8,7 @@ import IClubService from "../../../services/IServices/Football/IClubService";
 import {ParamsDictionary} from "express-serve-static-core";
 import {ParsedQs} from "qs";
 import IClubDTO from "../../../dto/football/IClubDTO";
+import {Club} from "../../../domain/football/club";
 
 @Service()
 export default class ClubController implements IClubController {
@@ -108,6 +109,17 @@ export default class ClubController implements IClubController {
                 return res.status(404).json(league.errorValue());
             }
 
+            const club = Club.create(clubDTO);
+            if (club.isFailure) {
+                return res.status(400).json({error: club.errorValue()});
+            }
+
+            const result = await this.clubServiceInstance.save(club.getValue());
+            if (result.isFailure) {
+                return res.status(400).json({error: result.errorValue()});
+            }
+
+            return res.status(200).json(result.getValue());
         } catch (error) {
             next(error);
         }

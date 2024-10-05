@@ -13,21 +13,22 @@ export default (app: Router) => {
     const storage = multer.memoryStorage();
     const upload = multer({storage: storage});
 
-    const ctrl = Container.get(config.controllers.football.league.name) as IStadiumController;
+    const ctrl = Container.get(config.controllers.football.stadium.name) as IStadiumController;
 
     route.post('/', upload.single('image'), celebrate({
         body: Joi.object({
             name: Joi.string().required(),
             countryId: Joi.string().required(),
-            numberOfTeams: Joi.number().required(),
-            division: Joi.number().required(),
-            description: Joi.string()
+            location: Joi.string().required(),
+            capacity: Joi.number().required(),
+            surfaceType: Joi.string().required(),
+            dimensions: Joi.string().required(),
+            yearOpened: Joi.number().required()
         }),
     }), async (req, res, next) => {
         console.log('Saving stadium...');
         ctrl.saveStadium(req, res, next);
     });
-
 
 
 }

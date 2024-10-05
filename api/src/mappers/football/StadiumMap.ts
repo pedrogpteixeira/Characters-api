@@ -13,9 +13,24 @@ export class StadiumMap extends Mapper<Stadium> {
             countryId: stadium.countryId,
             location: stadium.location,
             capacity: stadium.capacity,
-            surface_type: stadium.surface_type,
+            surfaceType: stadium.surface_type,
             dimensions: stadium.dimensions,
-            year_opened: stadium.year_opened
+            yearOpened: stadium.year_opened,
+            image: ""
+        } as IStadiumDTO;
+    }
+
+    public static toDTOWithImage(stadium: Stadium): IStadiumDTO {
+        return {
+            id: stadium.id.toString(),
+            name: stadium.name,
+            countryId: stadium.countryId,
+            location: stadium.location,
+            capacity: stadium.capacity,
+            surfaceType: stadium.surface_type,
+            dimensions: stadium.dimensions,
+            yearOpened: stadium.year_opened,
+            image: stadium.image
         } as IStadiumDTO;
     }
 
@@ -34,9 +49,10 @@ export class StadiumMap extends Mapper<Stadium> {
             location: stadium.location,
             countryId: stadium.countryId,
             capacity: stadium.capacity,
-            surface_type: stadium.surface_type,
+            surfaceType: stadium.surface_type,
             dimensions: stadium.dimensions,
-            year_opened: stadium.year_opened
+            yearOpened: stadium.year_opened,
+            image: stadium.image
         };
     }
 }

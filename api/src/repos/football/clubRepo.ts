@@ -1,14 +1,13 @@
 import {Inject, Service} from "typedi";
 import {Document, Model} from "mongoose";
+import {Club} from "../../domain/football/club";
+import {ClubMap} from "../../mappers/football/ClubMap";
 import IClubRepo from "../../services/IRepos/Football/IClubRepo";
 import {IClubPersistence} from "../../dataschema/Football/IClubPersistence";
-import {Club} from "../../domain/football/club";
-import {ClubId} from "../../domain/football/clubId";
-import {ClubMap} from "../../mappers/football/ClubMap";
 
 @Service()
 export default class ClubRepo implements IClubRepo {
-    private continent: any;
+    private club: any;
 
     constructor(
         @Inject('clubSchema') private clubSchema: Model<IClubPersistence & Document>,

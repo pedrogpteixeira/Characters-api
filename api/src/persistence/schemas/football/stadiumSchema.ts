@@ -8,9 +8,10 @@ const StadiumSchema: Schema = new Schema(
         countryId: {type: String, required: true},
         location: {type: String, required: true},
         capacity: {type: Number, required: true},
-        surface_type: {type: String, required: true},
+        surfaceType: {type: String, required: true},
         dimensions: {type: String, required: true},
-        year_opened: {type: Number, required: true}
+        yearOpened: {type: Number, required: true},
+        image: {type: String}
     },
     {
         timestamps: true,

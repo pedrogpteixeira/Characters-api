@@ -7,7 +7,7 @@ import {LeagueMap} from "../../mappers/football/LeagueMap";
 
 @Service()
 export default class LeagueRepo implements ILeagueRepo {
-    private continent: any;
+    private league: any;
 
     constructor(
         @Inject('leagueSchema') private leagueSchema: Model<ILeaguePersistence & Document>,

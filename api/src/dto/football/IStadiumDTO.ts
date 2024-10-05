@@ -4,7 +4,8 @@ export default interface IStadiumDTO {
     countryId: string;
     location: string;
     capacity: number;
-    surface_type: string;
+    surfaceType: string;
     dimensions: string;
-    year_opened: number;
+    yearOpened: number;
+    image: string;
 }

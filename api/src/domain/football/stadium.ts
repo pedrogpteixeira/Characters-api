@@ -10,9 +10,10 @@ interface StadiumProps {
     countryId: string;
     location: string;
     capacity: number;
-    surface_type: string;
+    surfaceType: string;
     dimensions: string;
-    year_opened: number;
+    yearOpened: number;
+    image: string;
 }
 
 export class Stadium extends AggregateRoot<StadiumProps> {
@@ -38,7 +39,7 @@ export class Stadium extends AggregateRoot<StadiumProps> {
     }
 
     get surface_type(): string {
-        return this.props.surface_type;
+        return this.props.surfaceType;
     }
 
     get dimensions(): string {
@@ -46,7 +47,11 @@ export class Stadium extends AggregateRoot<StadiumProps> {
     }
 
     get year_opened(): number {
-        return this.props.year_opened;
+        return this.props.yearOpened;
+    }
+
+    get image(): string {
+        return this.props.image;
     }
 
     get clubId(): StadiumId {
@@ -62,9 +67,10 @@ export class Stadium extends AggregateRoot<StadiumProps> {
         const countryId = stadiumDTO.countryId;
         const location = stadiumDTO.location;
         const capacity = stadiumDTO.capacity;
-        const surface_type = stadiumDTO.surface_type;
+        const surfaceType = stadiumDTO.surfaceType;
         const dimensions = stadiumDTO.dimensions;
-        const year_opened = stadiumDTO.year_opened;
+        const yearOpened = stadiumDTO.yearOpened;
+        const image = stadiumDTO.image;
 
         if (!!name == false || name.length === 0) {
             return Result.fail<Stadium>("Stadium name is required");
@@ -74,11 +80,11 @@ export class Stadium extends AggregateRoot<StadiumProps> {
             return Result.fail<Stadium>("Location is required");
         } else if (!!capacity == false || capacity === 0) {
             return Result.fail<Stadium>("Capacity is required");
-        } else if (!!surface_type == false || surface_type.length === 0) {
+        } else if (!!surfaceType == false || surfaceType.length === 0) {
             return Result.fail<Stadium>("Surface type is required");
         } else if (!!dimensions == false || dimensions.length === 0) {
             return Result.fail<Stadium>("Dimensions is required");
-        } else if (!!year_opened == false || year_opened === 0) {
+        } else if (!!yearOpened == false || yearOpened === 0) {
             return Result.fail<Stadium>("Year opened is required");
         } else {
             const stadium = new Stadium({
@@ -86,9 +92,10 @@ export class Stadium extends AggregateRoot<StadiumProps> {
                 countryId,
                 location,
                 capacity,
-                surface_type,
+                surfaceType,
                 dimensions,
-                year_opened
+                yearOpened,
+                image
             }, id);
             return Result.ok<Stadium>(stadium);
         }

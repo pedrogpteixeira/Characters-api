@@ -14,6 +14,19 @@ export default class LeagueService implements ILeagueService {
     ) {
     }
 
+    public async update(leagueId: string, league: League): Promise<Result<ILeagueDTO>> {
+        try {
+            const leagueOrError = await this.leagueRepo.update(leagueId, league);
+            if (leagueOrError == null) {
+                return Result.fail<ILeagueDTO>("League not found");
+            }
+
+            return Result.ok<ILeagueDTO>(LeagueMap.toDTO(leagueOrError));
+        } catch (error) {
+            throw error;
+        }
+    }
+
     public async findImageById(leagueId: string): Promise<Result<ILeagueDTO>> {
         try {
             const league = await this.leagueRepo.findById(leagueId);
